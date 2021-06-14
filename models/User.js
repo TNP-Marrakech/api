@@ -38,7 +38,7 @@ const UserSchema = new mongoose.Schema({
     },
     isAdmin:{
         type:   Boolean,
-        default:    false,
+        default: false,
     },
     School:{
         type:String,
@@ -56,6 +56,10 @@ const UserSchema = new mongoose.Schema({
         type:String,
         max:50
     },
+    report:{
+        type:Number,
+        default:0
+    }
     
     
 

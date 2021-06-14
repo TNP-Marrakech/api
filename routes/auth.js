@@ -29,11 +29,14 @@ router.post("/register", async (req,res)=>{
 /*======================LOGIN========================*/
 router.post("/login",async(req,res)=>{
     //try to find user
+    const {email,password}=req.body;
+    console.log(email)
     try{
-    const user = await User.findOne({email:req.body.email});
+    const user = await User.findOne({email});
+    console.log(user)
     !user && res.status(404).send("user not found");
-
-    const validPassword = await bcrypt.compare(req.body.password,user.password)
+        console.log(user)
+    const validPassword = await bcrypt.compare(password,user.password);
     !validPassword && res.status(400).json("wrong password")
 
     res.status(200).json(user)
@@ -41,6 +44,22 @@ router.post("/login",async(req,res)=>{
         res.status(500).json(err)
     }
 
+});
+router.post("/admin",async (req,res)=>{
+    try{
+        const user = await User.findOne({username:req.body.username});
+        !user && res.status(404).send("admin not found");
+        console.log(req.body.isAdmin)
+        if (user.isAdmin === true){
+            const validPassword = await bcrypt.compare(req.body.password,user.password)
+            !validPassword && res.status(400).json("wrong password")
+        res.status(200).json(user)
+        }
+        else{
+            res.status(500).json("this user is not admin")
+        }
+    }catch(err){
+        res.status(500).json(err)}
 });
 
 router.get("/",(req,res)=>{
