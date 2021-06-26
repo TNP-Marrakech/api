@@ -9,6 +9,8 @@ const morgan = require("morgan");
 const userRoute  = require("./routes/users");
 const authRoute  = require("./routes/auth");
 const postRoute  = require("./routes/posts");
+const conversationRoute  = require("./routes/conversations");
+const messageRoute  = require("./routes/messages");
 const multer = require("multer");
 const path = require("path")
 //dotenv configuration
@@ -53,6 +55,8 @@ const storage = multer.diskStorage({
 app.use("/api/users",userRoute)
 app.use("/api/auth",authRoute)
 app.use("/api/posts",postRoute)
+app.use("/api/conversations",conversationRoute)
+app.use("/api/messages",messageRoute)
 
 /*
 app.get("/",(req,res)=>{
