@@ -59,6 +59,10 @@ const UserSchema = new mongoose.Schema({
     report:{
         type:Number,
         default:0
+    },
+    isActivated:{
+        type:Boolean,
+        default:true
     }
     
     
