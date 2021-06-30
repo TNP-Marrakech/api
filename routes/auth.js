@@ -62,9 +62,9 @@ router.post("/admin",async (req,res)=>{
         res.status(500).json(err)}
 });
 
-router.get("/",(req,res)=>{
+/*router.get("/",(req,res)=>{
     res.send("hey its user route")
-})
+})*/
 
 //to use it in index file
 module.exports = router;
